@@ -25,6 +25,26 @@ namespace Lara
     public interface IEntityBuilderFill<T>
     {
         /// <summary>
+        /// Adds a rule to override the default random function that is applied on the field.
+        /// </summary>
+        /// <param name="property">The property to have the rule applied. Example: x => x.Name</param>
+        /// <param name="func">A delegate to the function that will be called to fill the property. Example: () => Randomizer.Person.Name()</param>
+        IEntityBuilderFill<T> WithRule(Expression<Func<T, object>> property, Func<object> func);
+
+        /// <summary>
+        /// Adds a rule to override the default random function that is applied on the field.
+        /// </summary>
+        /// <param name="property">The property to have the rule applied. Example: x => x.Name</param>
+        /// <param name="func">The value that will be filled in the property. Example: "John"</param>
+        IEntityBuilderFill<T> WithRule(Expression<Func<T, object>> property, object value);
+
+        /// <summary>
+        /// Ignores a property on the entity. The property will be kept with its default value.
+        /// </summary>
+        /// <param name="property">The property to be ignored. Example: x => x.Age</param>
+        IEntityBuilderFill<T> Except(Expression<Func<T, object>> property);
+
+        /// <summary>
         /// Fills the entity with random information.
         /// </summary>
         /// <returns>An object of type T</returns>
@@ -36,30 +56,19 @@ namespace Lara
         /// <param name="quantity">The number of entities to be created and returned.</param>
         /// <returns>A List of objects of type T</returns>
         List<T> BuildList(int quantity);
-
-        IEntityBuilderFill<T> WithRule(Expression<Func<T, string>> property, EntityBuilderStringRule rule);
-
-        IEntityBuilderFill<T> WithRule(Expression<Func<T, int>> property, EntityBuilderIntRule rule);
-    }
-
-    public enum EntityBuilderStringRule
-    {
-        FirstName = 1,
-        LastName = 2,
-        FullName = 3
-    }
-
-    public enum EntityBuilderIntRule
-    {
-        OnlyPositives = 1,
-        OnlyNegatives = 2,
-        PersonAge = 3
     }
 
     internal class EntityBuilderFill<T> : IEntityBuilderFill<T>
         where T : new()
     {
-        private List<EntityRule> Rules;
+        private Dictionary<string, Func<object>> Rules;
+        private List<string> Exceptions;
+
+        public EntityBuilderFill()
+        {
+            Exceptions = new List<string>();
+            Rules = new Dictionary<string, Func<object>>();
+        }
 
         public T Build()
         {
@@ -69,8 +78,20 @@ namespace Lara
                 .ToList()
                 .ForEach(property =>
                 {
-                    object value = GetValueForProperty(property);
-                    property.SetValue(entity, value);
+                    if (!PropertyMustBeIgnored(property))
+                    {
+                        object value;
+                        if (PropertyHasRule(property))
+                        {
+                            value = GetRuleValue(property);
+                        }
+                        else
+                        {
+                            value = GetRandomValue(property);
+                        }
+                        
+                        property.SetValue(entity, value);
+                    }
                 });
 
             return entity;
@@ -84,31 +105,32 @@ namespace Lara
                 .ToList();
         }
 
-        public IEntityBuilderFill<T> WithRule(Expression<Func<T, string>> property, EntityBuilderStringRule rule)
+        public IEntityBuilderFill<T> WithRule(Expression<Func<T, object>> property, Func<object> func)
         {
-            var propertyName = GetPropertyName(property);
-            AddRule(EntityRule.FieldTypeEnum.String, propertyName, rule);
+            AddRule(GetPropertyName(property), func);
             return this;
         }
 
-        public IEntityBuilderFill<T> WithRule(Expression<Func<T, int>> property, EntityBuilderIntRule rule)
+        public IEntityBuilderFill<T> WithRule(Expression<Func<T, object>> property, object value)
         {
-            var propertyName = GetPropertyName(property);
-            AddRule(EntityRule.FieldTypeEnum.Int, propertyName, rule);
+            AddRule(GetPropertyName(property), () => { return value; });
             return this;
         }
 
-        private void AddRule(EntityRule.FieldTypeEnum fieldType, string propertyName, object rule)
+        public IEntityBuilderFill<T> Except(Expression<Func<T, object>> property)
         {
-            if (Rules == null)
-                Rules = new List<EntityRule>();
+            AddException(GetPropertyName(property));
+            return this;
+        }
 
-            Rules.Add(new EntityRule
-            {
-                FieldType = fieldType,
-                PropertyName = propertyName,
-                RuleValue = rule
-            });
+        private void AddException(string propertyName)
+        {
+            Exceptions.Add(propertyName);
+        }
+
+        private void AddRule(string propertyName, Func<object> func)
+        {
+            Rules.Add(propertyName, func);
         }
 
         private string GetPropertyName<TSource, TProperty>(Expression<Func<TSource, TProperty>> exp)
@@ -122,7 +144,31 @@ namespace Lara
             return body.Member.Name;
         }
 
-        private static object GetValueForProperty(PropertyInfo propertyInfo)
+        private bool PropertyMustBeIgnored(PropertyInfo propertyInfo)
+        {
+            bool isInExceptionList = Exceptions.Any(e => e == propertyInfo.Name);
+            return isInExceptionList;
+        }
+
+        private bool PropertyHasRule(PropertyInfo propertyInfo)
+        {
+            var propertyHasRule = Rules.Any(r => r.Key == propertyInfo.Name);
+            return propertyHasRule;
+        }
+
+        private object GetRuleValue(PropertyInfo propertyInfo)
+        {
+            var rule = Rules.FirstOrDefault(r => r.Key == propertyInfo.Name).Value;
+            if (rule != null)
+            {
+                object evaluatedValue = rule();
+                return evaluatedValue;
+            }
+
+            return null;
+        }
+
+        private object GetRandomValue(PropertyInfo propertyInfo)
         {
             var typeName = propertyInfo.PropertyType.ToString().ToLower();
             object value = typeName switch
@@ -138,21 +184,6 @@ namespace Lara
             };
 
             return value;
-        }
-
-        private class EntityRule
-        {
-            internal enum FieldTypeEnum
-            {
-                String = 1,
-                Int = 2
-            }
-
-            internal FieldTypeEnum FieldType { get; set; }
-
-            public string PropertyName { get; set; }
-
-            public object RuleValue { get; set; }
         }
     }
 

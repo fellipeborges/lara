@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit;
-using NUnit.Framework;
-using Lara;
+﻿using NUnit.Framework;
+using System;
 
 namespace Lara.Tests.Builder
 {
@@ -22,19 +18,27 @@ namespace Lara.Tests.Builder
         }
 
         [Test]
-        public void Single_WithRules()
+        public void RulesAndExceptions()
         {
+            string STRING_RETURN_VALUE = Guid.NewGuid().ToString();
+            DateTime DATE_RETURN_VALUE = DateTime.Now;
+
             var ent = EntityBuilder
                 .Fill<BuilderTestsModel>()
-                .WithRule(x => x.StringProperty, EntityBuilderStringRule.FullName)
-                .WithRule(x => x.IntProperty, EntityBuilderIntRule.OnlyNegatives)
+                .WithRule(x => x.StringProperty, () => { return STRING_RETURN_VALUE; })
+                .WithRule(x => x.DateTimeProperty, DATE_RETURN_VALUE)
+                .Except(x => x.IntProperty)
                 .Build();
+
+            Assert.AreEqual(ent.StringProperty, STRING_RETURN_VALUE);
+            Assert.AreEqual(ent.DateTimeProperty, DATE_RETURN_VALUE);
+            Assert.AreEqual(0, ent.IntProperty);
         }
 
         [Test]
         public void List()
         {
-            const int QUANTITY = 10;
+            const int QUANTITY = 2;
             var entities = EntityBuilder.Fill<BuilderTestsModel>().BuildList(QUANTITY);
 
             Assert.AreEqual(QUANTITY, entities.Count);
