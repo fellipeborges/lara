@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using Lara;
 
-namespace Lara.Tests.Builder
+namespace Builder
 {
     public class EntityBuilderTests
     {
@@ -9,12 +10,7 @@ namespace Lara.Tests.Builder
         public void Single()
         {
             var ent = EntityBuilder.Fill<BuilderTestsModel>().Build();
-            Assert.IsTrue(ent.IntProperty != 0);
-            Assert.IsTrue(ent.LongProperty != 0);
-            Assert.IsTrue(ent.DoubleProperty != 0);
-            Assert.IsTrue(ent.ByteProperty != 0);
-            Assert.IsTrue(ent.DateTimeProperty != DateTime.MinValue);
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(ent.StringProperty));
+            ValidateAllProperties(ent);
         }
 
         [Test]
@@ -44,14 +40,20 @@ namespace Lara.Tests.Builder
             Assert.AreEqual(QUANTITY, entities.Count);
             entities.ForEach(ent =>
             {
-                Assert.IsTrue(ent.IntProperty != 0);
-                Assert.IsTrue(ent.LongProperty != 0);
-                Assert.IsTrue(ent.DoubleProperty != 0);
-                Assert.IsTrue(ent.ByteProperty != 0);
-                Assert.IsTrue(ent.DateTimeProperty != DateTime.MinValue);
-                Assert.IsTrue(!string.IsNullOrWhiteSpace(ent.StringProperty));
+                ValidateAllProperties(ent);
             });
-            
+        }
+
+        private static void ValidateAllProperties(BuilderTestsModel ent)
+        {
+            Assert.IsTrue(ent.IntProperty != 0);
+            Assert.IsTrue(ent.LongProperty != 0);
+            Assert.IsTrue(ent.DoubleProperty != 0);
+            Assert.IsTrue(ent.ByteProperty != 0);
+            Assert.IsTrue(ent.DateTimeProperty != DateTime.MinValue);
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(ent.StringProperty));
+            Assert.IsNull(ent.SecondLevelModel);
+            Assert.IsNull(ent.SecondLevelModelList);
         }
     }
 }

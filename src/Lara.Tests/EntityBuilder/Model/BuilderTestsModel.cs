@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Lara.Tests.Builder
+namespace Builder
 {
     public class BuilderTestsModel
     {
@@ -19,5 +18,16 @@ namespace Lara.Tests.Builder
         public bool BoolProperty { get; set; }
 
         public DateTime DateTimeProperty { get; set; }
+
+        public BuilderTestsSecondLevelModel SecondLevelModel { get; set; }
+
+        public List<BuilderTestsSecondLevelModel> SecondLevelModelList { get; set; }
+    }
+
+    public class BuilderTestsSecondLevelModel
+    {
+        public int SecondLevelIntProperty { get; set; }
+
+        public string SecondLevelStringProperty { get; set; }
     }
 }
