@@ -2,7 +2,7 @@
 using System;
 using Lara;
 
-namespace Builder
+namespace EntitiesBuilder
 {
     public class EntityBuilderTests
     {
