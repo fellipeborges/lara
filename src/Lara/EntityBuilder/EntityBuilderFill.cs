@@ -10,11 +10,11 @@ namespace Lara
         where T : new()
     {
         private readonly Dictionary<string, Func<object>> Rules;
-        private readonly List<string> Exceptions;
+        private readonly List<string> IgnoreList;
 
         public EntityBuilderFill()
         {
-            Exceptions = new List<string>();
+            IgnoreList = new List<string>();
             Rules = new Dictionary<string, Func<object>>();
         }
 
@@ -54,20 +54,30 @@ namespace Lara
 
         public IEntityBuilderFill<T> Except(Expression<Func<T, object>> property)
         {
-            AddException(GetPropertyName(property));
+            AddToIgnoreList(GetPropertyName(property));
             return this;
         }
 
-        private void AddException(string propertyName)
+        /// <summary>
+        /// Adds a property to the local list of properties that must be ignored later when building the entity.
+        /// </summary>
+        private void AddToIgnoreList(string propertyName)
         {
-            Exceptions.Add(propertyName);
+            IgnoreList.Add(propertyName);
         }
 
+        /// <summary>
+        /// Adds a Rule to the local list of rules that must be applied later when building the entity.
+        /// </summary>
         private void AddRule(string propertyName, Func<object> func)
         {
             Rules.Add(propertyName, func);
         }
 
+        /// <summary>
+        /// Sets a value to a property.
+        /// Before setting the value checks if the property must be ignored and if it has a configured rule or should be filled with random information.
+        /// </summary>
         private void SetValueToProperty(PropertyInfo property, T entity)
         {
             if (PropertyMustBeIgnored(property))
@@ -88,6 +98,9 @@ namespace Lara
             property.SetValue(entity, value);
         }
 
+        /// <summary>
+        /// Returns a value that is configured in a Rule.
+        /// </summary>
         private object GetRuleValue(PropertyInfo propertyInfo)
         {
             var rule = Rules.FirstOrDefault(r => r.Key == propertyInfo.Name).Value;
@@ -100,6 +113,9 @@ namespace Lara
             return null;
         }
 
+        /// <summary>
+        /// Returns a value randomized based on its type.
+        /// </summary>
         private object GetRandomValue(PropertyInfo propertyInfo)
         {
             //#ToDo: replace by real random methods
@@ -119,6 +135,9 @@ namespace Lara
             return value;
         }
 
+        /// <summary>
+        /// Returns the property name (string) based on the given expression.
+        /// </summary>
         private string GetPropertyName<TSource, TProperty>(Expression<Func<TSource, TProperty>> exp)
         {
             if (!(exp.Body is MemberExpression body))
@@ -130,12 +149,18 @@ namespace Lara
             return body.Member.Name;
         }
 
+        /// <summary>
+        /// Checks if a property must be ignored by checking if it's added in the "IgnoreList" collection.
+        /// </summary>
         private bool PropertyMustBeIgnored(PropertyInfo propertyInfo)
         {
-            bool isInExceptionList = Exceptions.Any(e => e == propertyInfo.Name);
-            return isInExceptionList;
+            bool isInIgnoreList = IgnoreList.Any(e => e == propertyInfo.Name);
+            return isInIgnoreList;
         }
 
+        /// <summary>
+        /// Checks if a property has a configured Rule by checking if there is a record in the "Rules" collection.
+        /// </summary>
         private bool PropertyHasRule(PropertyInfo propertyInfo)
         {
             var propertyHasRule = Rules.Any(r => r.Key == propertyInfo.Name);
