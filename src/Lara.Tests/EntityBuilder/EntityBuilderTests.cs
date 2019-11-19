@@ -6,6 +6,13 @@ namespace EntitiesBuilder
 {
     public class EntityBuilderTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            // Set the Seed to force always same results
+            Randomic.SetSeed(1);
+        }
+
         [Test]
         public void Single()
         {
@@ -46,12 +53,12 @@ namespace EntitiesBuilder
 
         private static void ValidateAllProperties(BuilderTestsModel ent)
         {
-            Assert.IsTrue(ent.IntProperty != 0);
-            Assert.IsTrue(ent.LongProperty != 0);
-            Assert.IsTrue(ent.DoubleProperty != 0);
-            Assert.IsTrue(ent.ByteProperty != 0);
-            Assert.IsTrue(ent.DateTimeProperty != DateTime.MinValue);
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(ent.StringProperty));
+            Assert.AreEqual(534011718, ent.IntProperty);
+            Assert.AreEqual(534011718, ent.LongProperty);
+            Assert.AreEqual(4.470298065951377E+307, ent.DoubleProperty);
+            Assert.AreEqual(63, ent.ByteProperty);
+            Assert.AreEqual(new DateTime(2002, 04, 30, 05, 58, 04, 717), ent.DateTimeProperty);
+            Assert.AreEqual("MFYoiWSxFhBMQzji", ent.StringProperty);
             Assert.IsNull(ent.SecondLevelModel);
             Assert.IsNull(ent.SecondLevelModelList);
         }
