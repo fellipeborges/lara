@@ -92,6 +92,13 @@ namespace Lara.Randomizers
             return randomInt == 0 ? false : true;
         }
 
+        public TReturn EvenOdd<TReturn>(int counter, TReturn evenValue, TReturn oddValue)
+        {
+            return
+                (counter % 2 == 0) ?
+                    evenValue : oddValue;
+        }
+
         private string GetRandomChars(string chars, int length)
         {
             var random = GetRandom();

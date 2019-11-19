@@ -126,5 +126,20 @@ namespace RandomicTests
             bool value = Randomic.Basic.Boolean();
             Assert.IsFalse(value);
         }
+
+        [Test]
+        public void EvenOdd()
+        {
+            const string VALUE_FOR_EVEN = "AAA";
+            const string VALUE_FOR_ODD = "BBB";
+
+            // Even
+            string evenValue = Randomic.Basic.EvenOdd(0, VALUE_FOR_EVEN, VALUE_FOR_ODD);
+            Assert.AreEqual(VALUE_FOR_EVEN, evenValue);
+            
+            // Odd
+            string oddValue = Randomic.Basic.EvenOdd(1, VALUE_FOR_EVEN, VALUE_FOR_ODD);
+            Assert.AreEqual(VALUE_FOR_ODD, oddValue);
+        }
     }
 }

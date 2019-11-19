@@ -66,5 +66,15 @@ namespace Lara.Randomizers
         /// Generates a random Boolean value (true or false)
         /// </summary>
         bool Boolean();
+
+        /// <summary>
+        /// Returns the even or the odd value based on the counter.
+        /// Usefull for iterators (for i...) when it's necessary to return one or the other value.
+        /// </summary>
+        /// <typeparam name="TReturn">Type of the return.</typeparam>
+        /// <param name="counter">Iterator used to decide if it will be returned the Even or the Odd value.</param>
+        /// <param name="evenValue">Value to be returned when the counter is even.</param>
+        /// <param name="oddValue">Value to be returned when the counter is odd.</param>
+        TReturn EvenOdd<TReturn>(int counter, TReturn evenValue, TReturn oddValue);
     }
 }
