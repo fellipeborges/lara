@@ -118,17 +118,16 @@ namespace Lara
         /// </summary>
         private object GetRandomValue(PropertyInfo propertyInfo)
         {
-            //#ToDo: replace by real random methods
             var typeName = propertyInfo.PropertyType.ToString().ToLower();
             object value = typeName switch
             {
-                string type when type.Contains("int32") => 1,
-                string type when type.Contains("int64") => 1,
-                string type when type.Contains("double") => (double)1,
-                string type when type.Contains("byte") => (byte)1,
-                string type when type.Contains("datetime") => DateTime.MaxValue,
-                string type when type.Contains("string") => "ABC",
-                string type when type.Contains("bool") => true,
+                string type when type.Contains("int32") => Randomic.Basic.Int(),
+                string type when type.Contains("int64") => Randomic.Basic.Int(),
+                string type when type.Contains("double") => Randomic.Basic.Double(),
+                string type when type.Contains("byte") => Randomic.Basic.Byte(),
+                string type when type.Contains("datetime") => Randomic.Basic.DateTime(),
+                string type when type.Contains("string") => Randomic.Basic.String(),
+                string type when type.Contains("bool") => Randomic.Basic.Boolean(),
                 _ => null
             };
 
