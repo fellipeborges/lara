@@ -6,6 +6,26 @@ namespace RandomicTests
 {
     public class RandomBasicTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            // Set the Seed to force always same results
+            Randomic.SetSeed(1);
+        }
+
+
+        [Test]
+        public void TwoDifferentNumbersWhenSettingAndResetingSeed()
+        {
+            Randomic.SetSeed(1234);
+            int number1 = Randomic.Basic.Int();
+
+            Randomic.ResetSeed();
+            int number2 = Randomic.Basic.Int();
+
+            Assert.AreNotEqual(number1, number2);
+        }
+
         [Test]
         public void Guid()
         {
@@ -22,15 +42,15 @@ namespace RandomicTests
         {
             // No parameters
             int noParameters = Randomic.Basic.Int();
-            Assert.IsTrue(noParameters >= 0);
+            Assert.AreEqual(534011718, noParameters);
 
             // Between 1 and 1000
             int between1And1000 = Randomic.Basic.Int(1, 1000);
-            Assert.IsTrue(between1And1000 >= 1 && between1And1000 <= 1000);
+            Assert.AreEqual(249, between1And1000);
 
             // Negative
             int negative = Randomic.Basic.Int(int.MinValue, -1);
-            Assert.IsTrue(negative <= -1);
+            Assert.AreEqual(-1613471930, negative);
         }
 
         [Test]
@@ -38,86 +58,66 @@ namespace RandomicTests
         {
             // No parameters
             double noParameters = Randomic.Basic.Double();
-            Assert.IsTrue(noParameters >= 0);
+            Assert.AreEqual(4.470298065951377E+307, noParameters);
 
             // Between 1.0 and 1000.0
             double between1And1000 = Randomic.Basic.Double(1.0, 1000.0);
-            Assert.IsTrue(between1And1000 >= 1.0 && between1And1000 <= 1000.0);
+            Assert.AreEqual(249.41991557293568, between1And1000);
 
             // Negative
             double negative = Randomic.Basic.Double(double.MinValue, -1.0);
-            Assert.IsTrue(negative <= -1.0);
+            Assert.AreEqual(-1.3506633282671781E+308, negative);
         }
 
         [Test]
         public void Byte()
         {
             byte number = Randomic.Basic.Byte();
-            Assert.IsTrue(number >= 0 && number <= 255);
+            Assert.AreEqual(63, number);
         }
 
         [Test]
         public void String()
         {
             string randomStr = Randomic.Basic.String();
-            Assert.AreEqual(16, randomStr.Length);
+            Assert.AreEqual("MFYoiWSxFhBMQzji", randomStr);
 
             string randomStrLength32 = Randomic.Basic.String(32);
-            Assert.AreEqual(32, randomStrLength32.Length);
+            Assert.AreEqual("MFYoiWSxFhBMQzjiOfkkxEITpIpPqucl", randomStrLength32);
         }
 
         [Test]
         public void Alphanumeric()
         {
             string randomAlpha = Randomic.Basic.Alphanumeric();
-            Assert.AreEqual(16, randomAlpha.Length);
+            Assert.AreEqual("PGcvoaV7GnBPT0qo", randomAlpha);
 
             string randomAlpha32 = Randomic.Basic.Alphanumeric(32);
-            Assert.AreEqual(32, randomAlpha32.Length);
+            Assert.AreEqual("PGcvoaV7GnBPT0qoRmrr7FJXxKxTz3is", randomAlpha32);
         }
 
         [Test]
         public void Date()
         {
             // No parameters
-            DateTime MIN_DATE = new DateTime(1970, 01, 01);
-            DateTime MAX_DATE = new DateTime(2099, 12, 31);
             DateTime noParams = Randomic.Basic.Date();
-            Assert.IsTrue(noParams >= MIN_DATE && noParams <= MAX_DATE);
-            Assert.AreEqual(00, noParams.Hour);
-            Assert.AreEqual(00, noParams.Minute);
-            Assert.AreEqual(00, noParams.Second);
+            Assert.AreEqual(new DateTime(2002, 04, 30), noParams);
 
             // With parameters
-            DateTime INI_DATE = new DateTime(1986, 01, 01);
-            DateTime END_DATE = new DateTime(1986, 05, 18);
-            DateTime withParams = Randomic.Basic.Date(INI_DATE, END_DATE);
-            Assert.IsTrue(withParams >= INI_DATE && withParams <= END_DATE);
-            Assert.AreEqual(00, withParams.Hour);
-            Assert.AreEqual(00, withParams.Minute);
-            Assert.AreEqual(00, withParams.Second);
+            DateTime withParams = Randomic.Basic.Date(new DateTime(1986, 01, 01), new DateTime(1986, 05, 18));
+            Assert.AreEqual(new DateTime(1986, 02, 04), withParams);
         }
 
         [Test]
         public void DateTime()
         {
             // No parameters
-            DateTime MIN_DATETIME = new DateTime(1970, 01, 01, 00, 00, 00);
-            DateTime MAX_DATETME = new DateTime(2099, 12, 31, 23, 59, 59);
             DateTime noParams = Randomic.Basic.DateTime();
-            Assert.IsTrue(noParams >= MIN_DATETIME && noParams <= MAX_DATETME);
-            Assert.AreNotEqual(00, noParams.Hour);
-            Assert.AreNotEqual(00, noParams.Minute);
-            Assert.AreNotEqual(00, noParams.Second);
+            Assert.AreEqual(new DateTime(2002, 04, 30, 05, 58, 04, 717), noParams);
 
             // With parameters
-            DateTime INI_DATETIME = new DateTime(1986, 05, 18, 08, 40, 10);
-            DateTime END_DATETIME = new DateTime(1986, 05, 18, 08, 40, 20);
-            DateTime withParams = Randomic.Basic.DateTime(INI_DATETIME, END_DATETIME);
-            Assert.IsTrue(withParams >= INI_DATETIME && withParams <= END_DATETIME);
-            Assert.AreNotEqual(00, withParams.Hour);
-            Assert.AreNotEqual(00, withParams.Minute);
-            Assert.AreNotEqual(00, withParams.Second);
+            DateTime withParams = Randomic.Basic.DateTime(new DateTime(1986, 05, 18, 08, 40, 10), new DateTime(1986, 05, 18, 08, 40, 20));
+            Assert.AreEqual(new DateTime(1986, 05, 18, 08, 40, 12, 487), withParams);
         }
     }
 }

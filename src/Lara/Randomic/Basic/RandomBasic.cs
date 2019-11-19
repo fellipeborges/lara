@@ -5,7 +5,12 @@ namespace Lara.Randomizers
 {
     internal class RandomBasic : IRandomBasic
     {
-        private Random LocalRandom => new Random(System.Guid.NewGuid().GetHashCode());
+        private readonly Func<Random> GetRandom;
+
+        public RandomBasic(Func<Random> getRandomFunction)
+        {
+            GetRandom = getRandomFunction;
+        }
 
         public Guid Guid()
         {
@@ -14,12 +19,12 @@ namespace Lara.Randomizers
 
         public int Int(int minValue = 0, int maxValue = int.MaxValue)
         {
-            return LocalRandom.Next(minValue, maxValue);
+            return GetRandom().Next(minValue, maxValue);
         }
 
         public double Double(double minValue = 0, double maxValue = double.MaxValue)
         {
-            var next = LocalRandom.NextDouble();
+            var next = GetRandom().NextDouble();
             return minValue + (next * (maxValue - minValue));
         }
 
@@ -52,7 +57,7 @@ namespace Lara.Randomizers
 
         private string GetRandomChars(string chars, int length)
         {
-            var random = LocalRandom;
+            var random = GetRandom();
             var randomized = new string(
                 Enumerable.Repeat(chars, length)
                     .Select(s => s[random.Next(s.Length)])
@@ -68,7 +73,7 @@ namespace Lara.Randomizers
             maxDate ??= new DateTime(2099, 12, 31);
 
             int range = (maxDate.Value - minDate.Value).Days;
-            return minDate.Value.AddDays(LocalRandom.Next(range));
+            return minDate.Value.AddDays(GetRandom().Next(range));
         }
 
         public DateTime DateTime(DateTime? minDateTime = null, DateTime? maxDateTime = null)
