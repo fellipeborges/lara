@@ -55,18 +55,6 @@ namespace Lara.Randomizers
             return GetRandomChars(chars, length);
         }
 
-        private string GetRandomChars(string chars, int length)
-        {
-            var random = GetRandom();
-            var randomized = new string(
-                Enumerable.Repeat(chars, length)
-                    .Select(s => s[random.Next(s.Length)])
-                    .ToArray()
-                );
-
-            return randomized;
-        }
-
         public DateTime Date(DateTime? minDate = null, DateTime? maxDate = null)
         {
             minDate ??= new DateTime(1970, 01, 01);
@@ -96,6 +84,24 @@ namespace Lara.Randomizers
             }
             
             return date;
+        }
+
+        public bool Boolean()
+        {
+            int randomInt = Int(0, 1);
+            return randomInt == 0 ? false : true;
+        }
+
+        private string GetRandomChars(string chars, int length)
+        {
+            var random = GetRandom();
+            var randomized = new string(
+                Enumerable.Repeat(chars, length)
+                    .Select(s => s[random.Next(s.Length)])
+                    .ToArray()
+                );
+
+            return randomized;
         }
     }
 }

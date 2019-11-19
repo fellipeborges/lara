@@ -61,5 +61,10 @@ namespace Lara.Randomizers
         /// <param name="minDateTime">The minimum desired date/time. If not informed it will be 1970-01-01 00:00:00.</param>
         /// <param name="maxDateTime">The maximum desired date/time. If not informed it will be 2099-12-31 23:59:59.</param>
         DateTime DateTime(DateTime? minDateTime = null, DateTime? maxDateTime = null);
+
+        /// <summary>
+        /// Generates a random Boolean value (true or false)
+        /// </summary>
+        bool Boolean();
     }
 }

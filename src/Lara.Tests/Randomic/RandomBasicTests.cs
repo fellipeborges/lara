@@ -119,5 +119,12 @@ namespace RandomicTests
             DateTime withParams = Randomic.Basic.DateTime(new DateTime(1986, 05, 18, 08, 40, 10), new DateTime(1986, 05, 18, 08, 40, 20));
             Assert.AreEqual(new DateTime(1986, 05, 18, 08, 40, 12, 487), withParams);
         }
+
+        [Test]
+        public void Boolean()
+        {
+            bool value = Randomic.Basic.Boolean();
+            Assert.IsFalse(value);
+        }
     }
 }
