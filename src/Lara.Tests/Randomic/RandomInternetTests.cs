@@ -40,5 +40,12 @@ namespace RandomicTests
             Uri uri = Randomic.Internet.Uri();
             Assert.AreEqual("http://www.mfyoiwsxfhbmqzji.org/", uri.ToString());
         }
+
+        [Test]
+        public void Username()
+        {
+            string username = Randomic.Internet.Username();
+            Assert.AreEqual("creagengisondo", username);
+        }
     }
 }

@@ -38,5 +38,16 @@ namespace Lara.Randomizers
             var uri = new Uri(Url());
             return uri;
         }
+
+        public string Username()
+        {
+            string firstName = Randomic.People.FirstName();
+            string lastName = Randomic.People.LastName();
+            string optionalSeparator = Randomic.Among.Strings("", "_", "-", ".");
+            string optionalNumber = Randomic.Among.Strings("", Randomic.Basic.Int(1000, 9999).ToString());
+
+            string username = $"{firstName}{optionalSeparator}{lastName}{optionalNumber}".ToLower();
+            return username;
+        }
     }
 }
