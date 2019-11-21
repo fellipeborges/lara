@@ -7,17 +7,24 @@ namespace Lara
 {
     public static class Randomic
     {
-        private static int? _seed = null;
+        private static int? Seed = null;
+        private static Language Language = Language.EnUS;
+
+        /// <summary>
+        /// Sets the language that will be used for some randomic generators (mainly People and Location).
+        /// If none language is defined it will uses English as default.
+        /// </summary>
+        public static void SetLanguage(Language language) => Language = language;
 
         /// <summary>
         /// Forces the Seed to a specific value. Usually used in Unit Testing when it's necessary to know which randomic value will be returned./// </summary>
         /// <param name="seed">A number used to calculate a starting value for the pseudo-random number sequence.</param>
-        public static void SetSeed(int seed) => _seed = seed;
+        public static void SetSeed(int seed) => Seed = seed;
 
         /// <summary>
         /// Resets the Seed. Will force the library to create a different seed on every execution.
         /// </summary>
-        public static void ResetSeed() => _seed = null;
+        public static void ResetSeed() => Seed = null;
 
         /// <summary>
         /// Offers Randomizers for basic types such as Int, Date, String, Bool, etc.
@@ -45,11 +52,21 @@ namespace Lara
         }
 
         /// <summary>
+        /// Offers Randomizers for internet related subjects such as e-mail, URL and usernames.
+        /// </summary>
+        public static IRandomInternet Internet => new RandomInternet();
+
+        /// <summary>
+        /// Offers Randomizers for People related subjects such as name, age, birth date, etc.
+        /// </summary>
+        public static IRandomPeople People => new RandomPeople(Language);
+
+        /// <summary>
         /// Instantiate a new Random object with the given seed (from SedSeed method) or with a random seed.
         /// </summary>
         private static readonly Func<Random> GetRandom = delegate ()
         {
-            int seed = _seed == null ? Guid.NewGuid().GetHashCode() : (int)_seed;
+            int seed = Seed == null ? Guid.NewGuid().GetHashCode() : (int)Seed;
             return new Random(seed);
         };
     }
