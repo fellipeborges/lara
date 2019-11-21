@@ -2,11 +2,6 @@
 {
     internal class RandomInternet : IRandomInternet
     {
-        public RandomInternet()
-        {
-
-        }
-
         public string Email()
         {
             string firstName = Randomic.People.FirstName();
@@ -21,6 +16,18 @@
 
             string emailAddress = $"{firstName}{optionalDot}{lastName}{optionalNumber}@{domain}.{topLevel}{optionalCountryLevel}".ToLower();
             return emailAddress;
+        }
+        public string Url()
+        {
+            string protocol = Randomic.Among.Strings("http", "https");
+            string server = Randomic.Basic.String();
+
+            var domainCollections = new DomainCollection();
+            string topLevelDomain = Randomic.Among.Strings(domainCollections.GetTopLevelCollection());
+            string optionalCountryLevelDomain = Randomic.Basic.Boolean() ? "." + Randomic.Among.Strings(domainCollections.GetCountryLevelCollection()) : "";
+
+            string url = $"{protocol}://www.{server}.{topLevelDomain}{optionalCountryLevelDomain}".ToLower();
+            return url;
         }
     }
 }

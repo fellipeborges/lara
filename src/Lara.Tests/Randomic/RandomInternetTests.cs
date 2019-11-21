@@ -25,5 +25,12 @@ namespace RandomicTests
             string emailEnUs = Randomic.Internet.Email();
             Assert.AreEqual("creagengisondo@hotmail.org", emailEnUs);
         }
+
+        [Test]
+        public void Url()
+        {
+            string url = Randomic.Internet.Url();
+            Assert.AreEqual("http://www.mfyoiwsxfhbmqzji.org", url);
+        }
     }
 }
