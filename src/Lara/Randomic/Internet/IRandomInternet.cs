@@ -15,5 +15,11 @@ namespace Lara.Randomizers
         /// Example: http://www.pudim.com.br
         /// </summary>
         string Url();
+
+        /// <summary>
+        /// Generates a random Uri in the following format: protocol://server.domain
+        /// Example: http://www.pudim.com.br
+        /// </summary>
+        Uri Uri();
     }
 }

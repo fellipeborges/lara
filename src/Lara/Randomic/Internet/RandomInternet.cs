@@ -1,4 +1,6 @@
-﻿namespace Lara.Randomizers
+﻿using System;
+
+namespace Lara.Randomizers
 {
     internal class RandomInternet : IRandomInternet
     {
@@ -17,6 +19,7 @@
             string emailAddress = $"{firstName}{optionalDot}{lastName}{optionalNumber}@{domain}.{topLevel}{optionalCountryLevel}".ToLower();
             return emailAddress;
         }
+
         public string Url()
         {
             string protocol = Randomic.Among.Strings("http", "https");
@@ -28,6 +31,12 @@
 
             string url = $"{protocol}://www.{server}.{topLevelDomain}{optionalCountryLevelDomain}".ToLower();
             return url;
+        }
+
+        public Uri Uri()
+        {
+            var uri = new Uri(Url());
+            return uri;
         }
     }
 }

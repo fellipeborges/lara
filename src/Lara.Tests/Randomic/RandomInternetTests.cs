@@ -1,5 +1,6 @@
 ﻿using Lara;
 using NUnit.Framework;
+using System;
 
 namespace RandomicTests
 {
@@ -31,6 +32,13 @@ namespace RandomicTests
         {
             string url = Randomic.Internet.Url();
             Assert.AreEqual("http://www.mfyoiwsxfhbmqzji.org", url);
+        }
+
+        [Test]
+        public void Uri()
+        {
+            Uri uri = Randomic.Internet.Uri();
+            Assert.AreEqual("http://www.mfyoiwsxfhbmqzji.org/", uri.ToString());
         }
     }
 }
