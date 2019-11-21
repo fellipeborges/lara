@@ -5,7 +5,7 @@ namespace Lara.Randomizers
     internal class FirstNameCollection
     {
         /// <summary>
-        ///  Returns a list of first names based on the informed language
+        ///  Returns a list of first names based on the informed language.
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>
         internal List<string> GetCollection(Language language)

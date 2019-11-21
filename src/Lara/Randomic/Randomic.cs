@@ -45,6 +45,11 @@ namespace Lara
         public static IRandomPeople People => new RandomPeople(Language);
 
         /// <summary>
+        /// Offers Randomizers for Words in general such as planets, exoplanets, scientists, file names, etc.
+        /// </summary>
+        public static IRandomWords Words => new RandomWords(Language);
+
+        /// <summary>
         /// Instantiate a new Random object with the given seed (from SedSeed method) or with a random seed.
         /// </summary>
         private static readonly Func<Random> GetRandom = delegate ()
