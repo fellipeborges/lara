@@ -26,5 +26,26 @@ namespace RandomicTests
             string wordEnUs = Randomic.Words.Whatever();
             Assert.AreEqual("Control", wordEnUs);
         }
+
+        [Test]
+        public void Planet()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string planetPtBr = Randomic.Words.Planet();
+            Assert.AreEqual("Vênus", planetPtBr);
+
+            // EnUs
+            Randomic.SetLanguage(Language.EnUs);
+            string planetEnUs = Randomic.Words.Planet();
+            Assert.AreEqual("Venus", planetEnUs);
+        }
+
+        [Test]
+        public void ExoPlanet()
+        {
+            string exoPlanet = Randomic.Words.ExoPlanet();
+            Assert.AreEqual("Galileo", exoPlanet);
+        }
     }
 }

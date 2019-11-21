@@ -16,5 +16,17 @@ namespace Lara.Randomizers
             var collection = new WordsCollection().GetCollection(Language);
             return Randomic.Among.Strings(collection);
         }
+
+        public string Planet()
+        {
+            var collection = new PlanetsCollection().GetCollection(Language);
+            return Randomic.Among.Strings(collection);
+        }
+
+        public string ExoPlanet()
+        {
+            var collection = new ExoPlanetsCollection().GetCollection();
+            return Randomic.Among.Strings(collection);
+        }
     }
 }
