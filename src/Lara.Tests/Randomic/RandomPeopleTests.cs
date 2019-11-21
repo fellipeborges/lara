@@ -22,12 +22,12 @@ namespace RandomicTests
         public void FirstName()
         {
             // PtBr
-            Randomic.SetLanguage(Language.PtBR);
+            Randomic.SetLanguage(Language.PtBr);
             string namePtBr = Randomic.People.FirstName();
             Assert.AreEqual(PT_BR_FIRST_NAME, namePtBr);
 
             // EnUs
-            Randomic.SetLanguage(Language.EnUS);
+            Randomic.SetLanguage(Language.EnUs);
             string nameEnUs = Randomic.People.FirstName();
             Assert.AreEqual(EN_US_FIRST_NAME, nameEnUs);
         }
@@ -36,12 +36,12 @@ namespace RandomicTests
         public void LastName()
         {
             // PtBr
-            Randomic.SetLanguage(Language.PtBR);
+            Randomic.SetLanguage(Language.PtBr);
             string namePtBr = Randomic.People.LastName();
             Assert.AreEqual(PT_BR_LAST_NAME, namePtBr);
 
             // EnUs
-            Randomic.SetLanguage(Language.EnUS);
+            Randomic.SetLanguage(Language.EnUs);
             string nameEnUs = Randomic.People.LastName();
             Assert.AreEqual(EN_US_LAST_NAME, nameEnUs);
         }
@@ -50,12 +50,12 @@ namespace RandomicTests
         public void FullName()
         {
             // PtBr
-            Randomic.SetLanguage(Language.PtBR);
+            Randomic.SetLanguage(Language.PtBr);
             string namePtBr = Randomic.People.FullName();
             Assert.AreEqual($"{PT_BR_FIRST_NAME} {PT_BR_LAST_NAME}", namePtBr);
 
             // EnUs
-            Randomic.SetLanguage(Language.EnUS);
+            Randomic.SetLanguage(Language.EnUs);
             string nameEnUs = Randomic.People.FullName();
             Assert.AreEqual($"{EN_US_FIRST_NAME} {EN_US_LAST_NAME}", nameEnUs);
         }
@@ -64,12 +64,12 @@ namespace RandomicTests
         public void Prefix()
         {
             // PtBr
-            Randomic.SetLanguage(Language.PtBR);
+            Randomic.SetLanguage(Language.PtBr);
             string prefixPtBr = Randomic.People.Prefix();
             Assert.AreEqual("Sr.", prefixPtBr);
 
             // EnUs
-            Randomic.SetLanguage(Language.EnUS);
+            Randomic.SetLanguage(Language.EnUs);
             string prefixEnUs = Randomic.People.Prefix();
             Assert.AreEqual("Mrs.", prefixEnUs);
         }

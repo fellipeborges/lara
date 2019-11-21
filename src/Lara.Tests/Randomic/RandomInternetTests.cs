@@ -15,8 +15,15 @@ namespace RandomicTests
         [Test]
         public void Email()
         {
-            string email = Randomic.Internet.Email();
-            Assert.AreEqual("X", email);
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string emailPtBr = Randomic.Internet.Email();
+            Assert.AreEqual("denisecavalcanti@hotmail.org", emailPtBr);
+
+            // EnUs
+            Randomic.SetLanguage(Language.EnUs);
+            string emailEnUs = Randomic.Internet.Email();
+            Assert.AreEqual("creagengisondo@hotmail.org", emailEnUs);
         }
     }
 }

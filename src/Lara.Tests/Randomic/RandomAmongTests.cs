@@ -1,8 +1,6 @@
-﻿using NUnit.Framework;
-using System;
-using Lara;
+﻿using Lara;
+using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RandomicTests
 {
@@ -16,43 +14,66 @@ namespace RandomicTests
         }
 
         [Test]
-        public void EmptyArray()
+        public void AmongStrings()
         {
+            // Array
+            string[] array = new string[] { "ABC", "DEF", "GHI" };
+            string retValueArray = Randomic.Among.Strings(array);
+            Assert.AreEqual(array[0], retValueArray);
+
+            // Enumerable
+            var enumerable = new List<string> { "ABC", "DEF", "GHI" };
+            string retValueEnumerable = Randomic.Among.Strings(enumerable);
+            Assert.AreEqual(enumerable[0], retValueEnumerable);
+        }
+
+        [Test]
+        public void AmongInts()
+        {
+            // Array
+            int[] array = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int retValueArray = Randomic.Among.Ints(array);
+            Assert.AreEqual(array[2], retValueArray);
+
+            // Enumerable
+            var enumerable = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int retValueEnumerable = Randomic.Among.Ints(enumerable);
+            Assert.AreEqual(enumerable[2], retValueEnumerable);
+        }
+
+        [Test]
+        public void OtherWithArrays()
+        {
+            // Empty Array
             int[] emptyArray = new int[] { };
-            int retValue = Randomic.Among(emptyArray);
-            Assert.AreEqual((int)default, retValue);
-        }
+            int retValueEmptyArray = Randomic.Among.Other(emptyArray);
+            Assert.AreEqual((int)default, retValueEmptyArray);
 
-        [Test]
-        public void ArrayWithOneElement()
-        {
+            // Array with one element
             string[] oneElementArray = new string[] { "ABC" };
-            string retValue = Randomic.Among(oneElementArray);
-            Assert.AreEqual(oneElementArray[0], retValue);
+            string retValueOneElementArray = Randomic.Among.Other(oneElementArray);
+            Assert.AreEqual(oneElementArray[0], retValueOneElementArray);
+
+            // Array with multiple elements
+            long[] multipleElementArray = new long[] { 1452, 4745, 1265, 4587, 1249, 1233, 8547, 1454, 4136, 9999, 9854, 1469, 4139 };
+            long retValueMultipleElementArray = Randomic.Among.Other(multipleElementArray);
+            Assert.AreEqual(multipleElementArray[2], retValueMultipleElementArray);
         }
 
         [Test]
-        public void ArrayWithMultipleElements()
+        public void OtherWithEnumerables()
         {
-            long[] multipleElementArray = new long[] {
-                1452, 4745, 1265, 4587, 1249, 1233, 8547, 1454, 4136, 9999, 9854, 1469, 4139
-            };
-
-            long retValue = Randomic.Among(multipleElementArray);
-            Assert.AreEqual(multipleElementArray[2], retValue);
-        }
-
-        [Test]
-        public void EmptyEnumerable()
-        {
+            // Empty list
             var intList = new List<int>();
-            int retValue = Randomic.Among<int>(intList);
-            Assert.AreEqual((int)default, retValue);
-        }
+            int retValueEmptyList = Randomic.Among.Other<int>(intList);
+            Assert.AreEqual((int)default, retValueEmptyList);
 
-        [Test]
-        public void Enumerable()
-        {
+            // Enumerable with one element
+            var singleElementList = new List<long> { 50 };
+            long retValueOneElementList = Randomic.Among.Other<long>(singleElementList);
+            Assert.AreEqual(singleElementList[0], retValueOneElementList);
+
+            // Enumerable with multiple element
             var guidList = new List<string>{
                 "824bec01-7fbe-4d24-aa1a-bce13a98d072",
                 "fe218fc9-462d-48d7-bd51-b0b9ffc2cf38",
@@ -60,9 +81,8 @@ namespace RandomicTests
                 "e581025a-8b6f-4713-bc0b-37e6a0cdfc08",
                 "65a3f10e-372d-49cd-a2f4-2d8cc85d8cff"
             };
-
-            string retValue = Randomic.Among<string>(guidList);
-            Assert.AreEqual(guidList[0], retValue);
+            string retValueMultipleElements = Randomic.Among.Other<string>(guidList);
+            Assert.AreEqual(guidList[0], retValueMultipleElements);
         }
     }
 }

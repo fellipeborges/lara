@@ -26,13 +26,13 @@ namespace Lara.Randomizers
         public string FirstName()
         {
             var collection = new FirstNameCollection().GetCollection(Language);
-            return Randomic.Among<string>(collection);
+            return Randomic.Among.Strings(collection);
         }
 
         public string LastName()
         {
             var collection = new LastNameCollection().GetCollection(Language);
-            return Randomic.Among<string>(collection);
+            return Randomic.Among.Strings(collection);
         }
 
         public string FullName()
@@ -45,7 +45,7 @@ namespace Lara.Randomizers
         public string Prefix()
         {
             var collection = new PrefixCollection().GetCollection(Language);
-            return Randomic.Among<string>(collection);
+            return Randomic.Among.Strings(collection);
         }
 
         public int Age()

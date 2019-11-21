@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Lara.Randomizers;
+﻿using Lara.Randomizers;
+using System;
 
 namespace Lara
 {
     public static class Randomic
     {
         private static int? Seed = null;
-        private static Language Language = Language.EnUS;
+        private static Language Language = Language.EnUs;
 
         /// <summary>
         /// Sets the language that will be used for some randomic generators (mainly People and Location).
@@ -32,24 +30,9 @@ namespace Lara
         public static IRandomBasic Basic => new RandomBasic(GetRandom);
 
         /// <summary>
-        /// Returns a random value among the values of the informed array.
+        /// Offers Randomizers that selects a random value among a collection of items such as Arrays and IEnumerables.
         /// </summary>
-        /// <typeparam name="TReturn">Type of the return.</typeparam>
-        /// <param name="options">Array of options to be considered on return.</param>
-        public static TReturn Among<TReturn>(params TReturn[] options)
-        {
-            return new RandomAmong(Basic.Int).Among(options);
-        }
-
-        /// <summary>
-        /// Returns a random value among the values of the informed collection.
-        /// </summary>
-        /// <typeparam name="TReturn">Type of the return.</typeparam>
-        /// <param name="collection">IEnumerable of items to be considered on return.</param>
-        public static TReturn Among<TReturn>(IEnumerable<TReturn> collection)
-        {
-            return new RandomAmong(Basic.Int).Among(collection);
-        }
+        public static IRandomAmong Among => new RandomAmong();
 
         /// <summary>
         /// Offers Randomizers for internet related subjects such as e-mail, URL and usernames.

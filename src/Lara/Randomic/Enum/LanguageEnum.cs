@@ -5,11 +5,11 @@
         /// <summary>
         /// English from United States
         /// </summary>
-        EnUS = 1,
+        EnUs = 1,
 
         /// <summary>
         /// Brazilian Portuguese
         /// </summary>
-        PtBR = 2
+        PtBr = 2
     }
 }

@@ -12,8 +12,8 @@ namespace Lara.Randomizers
         {
             return language switch
             {
-                Language.EnUS => GetEnUS(),
-                Language.PtBR => GetPtBR(),
+                Language.EnUs => GetEnUS(),
+                Language.PtBr => GetPtBR(),
                 _ => GetEnUS(),
             };
         }
