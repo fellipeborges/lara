@@ -2,56 +2,141 @@
 
 namespace Lara.Randomizers
 {
-    internal class PlanetsCollection
+    internal class FamousPeopleCollection
     {
         /// <summary>
-        ///  Returns a list of Planets based on the informed language.
+        ///  Returns a list of famous people.
         /// </summary>
-        internal List<string> GetCollection(Language language)
-        {
-            return language switch
-            {
-                Language.EnUs => GetEnUs(),
-                Language.PtBr => GetPtBr(),
-                _ => GetEnUs(),
-            };
-        }
-
-        /// <summary>
-        /// Returns a list of Planets in EnUs.
-        /// </summary>
-        private List<string> GetEnUs()
+        internal List<string> GetCollection()
         {
             return new List<string>
             {
-                "Mercury",
-                "Venus",
-                "Earth",
-                "Mars",
-                "Jupiter",
-                "Saturn",
-                "Uranus",
-                "Neptune",
-                "Pluto"
-            };
-        }
-
-        /// <summary>
-        /// Returns a list of Planets in PtBr.
-        /// </summary>
-        private List<string> GetPtBr()
-        {
-            return new List<string>
-            {
-                "Mercúrio",
-                "Vênus",
-                "Terra",
-                "Marte",
-                "Júpiter",
-                "Saturno",
-                "Urano",
-                "Netuno",
-                "Plutão"
+                "Abraham Lincoln",
+                "Al Gore",
+                "Albert Einstein",
+                "Alfred Hitchcock",
+                "Amelia Earhart",
+                "Angelina Jolie",
+                "Anne Frank",
+                "Audrey Hepburn",
+                "Aung San Suu Kyi",
+                "Babe Ruth",
+                "Barack Obama",
+                "Benazir Bhutto",
+                "Bill Gates",
+                "Billie Holiday",
+                "Billie Jean King",
+                "Bob Geldof",
+                "Brad Pitt",
+                "C.S. Lewis",
+                "Carl Lewis",
+                "Charles Darwin",
+                "Charles de Gaulle",
+                "Christopher Columbus",
+                "Cleopatra",
+                "Coco Chanel",
+                "Cristiano Ronaldo",
+                "Dalai Lama",
+                "David Beckham",
+                "Desmond Tutu",
+                "Donald Trump",
+                "Elvis Presley",
+                "Emile Zatopek",
+                "Emmeline Pankhurst ",
+                "Ernest Hemingway",
+                "Eva Peron",
+                "Fidel Castro",
+                "Florence Nightingale",
+                "Franklin D. Roosevelt",
+                "George Bush Jnr",
+                "George Clooney",
+                "George Orwell",
+                "Grace Kelly",
+                "Greta Thunberg",
+                "Haile Selassie",
+                "Henry Ford",
+                "Indira Gandhi",
+                "Ingrid Bergman",
+                "J.K.Rowling",
+                "J.R.R. Tolkien",
+                "Jacqueline Kennedy Onassis",
+                "Jawaharlal Nehru",
+                "Jesse Owens",
+                "Jimmy Wales",
+                "John F. Kennedy",
+                "John Lennon",
+                "John M Keynes",
+                "Jon Stewart",
+                "Joseph Stalin",
+                "Julie Andrews",
+                "Katherine Hepburn",
+                "Kylie Minogue",
+                "Lance Armstrong",
+                "Lech Walesa",
+                "Leo Tolstoy",
+                "Leon Trotsky",
+                "Leonardo da Vinci",
+                "Lionel Messi",
+                "Lord Baden Powell",
+                "Louis Pasteur",
+                "Ludwig Beethoven",
+                "Lyndon Johnson",
+                "Madonna",
+                "Mahatma Gandhi",
+                "Malala Yousafzai",
+                "Malcolm X",
+                "Mao Zedong",
+                "Margaret Thatcher",
+                "Marie Antoinette",
+                "Marie Curie",
+                "Marilyn Monroe",
+                "Martin Luther King",
+                "Mary Magdalene",
+                "Mata Hari",
+                "Michael Jackson",
+                "Michael Jordon",
+                "Mikhail Gorbachev",
+                "Mother Teresa",
+                "Muhammad Ali",
+                "Neil Armstrong",
+                "Nelson Mandela",
+                "Oprah Winfrey",
+                "Oscar Wilde",
+                "Pablo Picasso",
+                "Paul Krugman",
+                "Paul McCartney",
+                "Pele",
+                "Peter Sellers",
+                "Plato",
+                "Pope Francis",
+                "Pope John Paul II",
+                "Prince Charles",
+                "Queen Elizabeth II",
+                "Queen Victoria",
+                "Richard Branson",
+                "Roger Federer",
+                "Roman Abramovich",
+                "Ronald Reagan",
+                "Rosa Parks",
+                "Rupert Murdoch",
+                "Sacha Baron Cohen",
+                "Shakira",
+                "Sigmund Freud",
+                "Simon Bolivar",
+                "Stephen Hawking",
+                "Stephen King",
+                "Steve Jobs",
+                "Thomas Edison",
+                "Tiger Woods",
+                "Tim Berners Lee",
+                "Tom Cruise",
+                "Usain Bolt",
+                "Vincent Van Gogh",
+                "Vladimir Lenin",
+                "Walt Disney",
+                "Winston Churchill",
+                "Woodrow Wilson",
+                "Wright Brothers  Orville"
             };
         }
     }

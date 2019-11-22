@@ -47,5 +47,12 @@ namespace RandomicTests
             string exoPlanet = Randomic.Words.ExoPlanet();
             Assert.AreEqual("Galileo", exoPlanet);
         }
+
+        [Test]
+        public void FamousPerson()
+        {
+            string famous = Randomic.Words.FamousPerson();
+            Assert.AreEqual("Emmeline Pankhurst", famous);
+        }
     }
 }

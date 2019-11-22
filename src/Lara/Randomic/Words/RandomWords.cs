@@ -28,5 +28,11 @@ namespace Lara.Randomizers
             var collection = new ExoPlanetsCollection().GetCollection();
             return Randomic.Among.Strings(collection);
         }
+
+        public string FamousPerson()
+        {
+            var collection = new FamousPeopleCollection().GetCollection();
+            return Randomic.Among.Strings(collection);
+        }
     }
 }
