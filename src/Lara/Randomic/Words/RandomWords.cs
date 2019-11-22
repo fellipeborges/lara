@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Lara.Randomizers
 {
@@ -11,27 +13,33 @@ namespace Lara.Randomizers
             Language = language;
         }
 
-        public string Whatever()
+        public string Noun()
         {
-            var collection = new WordsCollection().GetCollection(Language);
-            return Randomic.Among.Strings(collection);
+            return GetRandomFromCollection(new WordsCollection().GetCollection(Language));
         }
 
         public string Planet()
         {
-            var collection = new PlanetsCollection().GetCollection(Language);
-            return Randomic.Among.Strings(collection);
+            return GetRandomFromCollection(new PlanetsCollection().GetCollection(Language));
         }
 
         public string ExoPlanet()
         {
-            var collection = new ExoPlanetsCollection().GetCollection();
-            return Randomic.Among.Strings(collection);
+            return GetRandomFromCollection(new ExoPlanetsCollection().GetCollection());
         }
 
         public string FamousPerson()
         {
-            var collection = new FamousPeopleCollection().GetCollection();
+            return GetRandomFromCollection(new FamousPeopleCollection().GetCollection());
+        }
+
+        public string Brand()
+        {
+            return GetRandomFromCollection(new BrandCollection().GetCollection());
+        }
+
+        private string GetRandomFromCollection(List<string> collection)
+        {
             return Randomic.Among.Strings(collection);
         }
     }

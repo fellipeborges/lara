@@ -14,16 +14,16 @@ namespace RandomicTests
         }
 
         [Test]
-        public void Whatever()
+        public void Noun()
         {
             // PtBr
             Randomic.SetLanguage(Language.PtBr);
-            string wordPtBr = Randomic.Words.Whatever();
+            string wordPtBr = Randomic.Words.Noun();
             Assert.AreEqual("Conselho", wordPtBr);
 
             // EnUs
             Randomic.SetLanguage(Language.EnUs);
-            string wordEnUs = Randomic.Words.Whatever();
+            string wordEnUs = Randomic.Words.Noun();
             Assert.AreEqual("Control", wordEnUs);
         }
 
@@ -53,6 +53,13 @@ namespace RandomicTests
         {
             string famous = Randomic.Words.FamousPerson();
             Assert.AreEqual("Emmeline Pankhurst", famous);
+        }
+
+        [Test]
+        public void Brand()
+        {
+            string brand = Randomic.Words.Brand();
+            Assert.AreEqual("DHL", brand);
         }
     }
 }
