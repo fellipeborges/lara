@@ -33,5 +33,11 @@ namespace Lara.Randomizers
         /// Examples: "Microsoft", "Twitter", etc.
         /// </summary>
         string Brand();
+
+        /// <summary>
+        /// Returns the Lorem Ipsum text.
+        /// Example: ""
+        /// </summary>
+        string LoremIpsum(int paragraphs = 1);
     }
 }
