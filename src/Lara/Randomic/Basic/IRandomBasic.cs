@@ -69,6 +69,13 @@ namespace Lara.Randomizers
         bool Boolean();
 
         /// <summary>
+        /// Generates a random Boolean value (true or false) with a probability of true.
+        /// </summary>
+        /// <param name="probabilityOfTrue">Indicates the probability of generating the true value.
+        /// Must be a value from 0.0 (always false) to 1.0 (always true) with increments of 10% (0.1, 0.2, 0.3, etc)</param>
+        bool Boolean(double probabilityOfTrue);
+
+        /// <summary>
         /// Returns the even or the odd value based on the counter.
         /// Usefull for iterators (for i...) when it's necessary to return one or the other value.
         /// </summary>

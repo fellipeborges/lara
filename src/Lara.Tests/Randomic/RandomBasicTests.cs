@@ -128,6 +128,26 @@ namespace RandomicTests
         }
 
         [Test]
+        public void BooleanWithProbability()
+        {
+            // Invalid parameters (less than 0.0 and greater than 1.0)
+            Assert.Throws<ArgumentException>(() => Randomic.Basic.Boolean(-0.1));
+            Assert.Throws<ArgumentException>(() => Randomic.Basic.Boolean(1.1));
+
+            // Always true
+            bool valueTrue = Randomic.Basic.Boolean(1.0);
+            Assert.IsTrue(valueTrue);
+            
+            // Always false
+            bool valueFalse = Randomic.Basic.Boolean(0.0);
+            Assert.IsFalse(valueFalse);
+
+            // Randomic value
+            bool randomValue = Randomic.Basic.Boolean(0.5);
+            Assert.IsTrue(randomValue);
+        }
+
+        [Test]
         public void EvenOdd()
         {
             const string VALUE_FOR_EVEN = "AAA";

@@ -93,6 +93,24 @@ namespace Lara.Randomizers
             return randomInt == 0 ? false : true;
         }
 
+        public bool Boolean(double probabilityOfTrue)
+        {
+            if (probabilityOfTrue < 0.0 || probabilityOfTrue > 1.0)
+            {
+                throw new ArgumentException("Probability of true must be a value between 0.0 and 1.0.");
+            }
+
+            var probabilityArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int maxProbabilityPosition = (int)(probabilityOfTrue * 10);
+            for (int i = 0; i < maxProbabilityPosition; i++)
+            {
+                probabilityArray[i] = 1;
+            }
+
+            int randomPosition = Randomic.Among.Ints(probabilityArray);
+            return randomPosition == 0 ? false : true;
+        }
+
         public TReturn EvenOdd<TReturn>(int counter, TReturn evenValue, TReturn oddValue)
         {
             return
