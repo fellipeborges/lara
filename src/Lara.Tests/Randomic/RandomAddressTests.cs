@@ -26,5 +26,23 @@ namespace RandomicTests
             string enUs = Randomic.Address.Country();
             Assert.AreEqual("Dominica", enUs);
         }
+
+        [Test]
+        public void Type()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string ptBr = Randomic.Address.Type();
+            Assert.AreEqual("Bosque", ptBr);
+            string ptBrAbbr = Randomic.Address.TypeAbbreviated();
+            Assert.AreEqual("Bq.", ptBrAbbr);
+
+            // EnUs
+            Randomic.SetLanguage(Language.EnUs);
+            string enUs = Randomic.Address.Type();
+            Assert.AreEqual("Street", enUs);
+            string enUsAbbr = Randomic.Address.TypeAbbreviated();
+            Assert.AreEqual("St.", enUsAbbr);
+        }
     }
 }

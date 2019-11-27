@@ -9,5 +9,17 @@ namespace Lara.Randomizers
         /// Example: "Brazil", "Argentina", etc.
         /// </summary>
         string Country();
+
+        /// <summary>
+        /// Returns a random Type.
+        /// Example: "Street", "Avenue", etc.
+        /// </summary>
+        string Type();
+
+        /// <summary>
+        /// Returns a random abbreviated Type.
+        /// Example: "St.", "Av.", etc.
+        /// </summary>
+        string TypeAbbreviated();
     }
 }
