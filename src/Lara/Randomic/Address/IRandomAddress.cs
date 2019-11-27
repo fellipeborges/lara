@@ -21,5 +21,17 @@ namespace Lara.Randomizers
         /// Example: "St.", "Av.", etc.
         /// </summary>
         string TypeAbbreviated();
+
+        /// <summary>
+        /// Generates a random name.
+        /// Example: "Richard Ballman", "Galileo Mercury", etc.
+        /// </summary>
+        string Name();
+
+        /// <summary>
+        /// Generates a random number.
+        /// Example: "126", "3B", etc.
+        /// </summary>
+        string Number();
     }
 }

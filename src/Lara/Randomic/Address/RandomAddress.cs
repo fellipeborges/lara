@@ -28,5 +28,40 @@ namespace Lara.Randomizers
             var collection = new AddressTypeCollection().GetAbbreviatedTypeCollection(Language);
             return Randomic.Among.Strings(collection);
         }
+
+        public string Name()
+        {
+            string partA = Randomic.Among.Strings(
+                Randomic.People.FirstName(),
+                Randomic.People.LastName(),
+                Randomic.Words.Planet(),
+                Randomic.Words.ExoPlanet(),
+                Randomic.Words.FamousPerson());
+
+            string partB = Randomic.Among.Strings(
+                Randomic.Words.ExoPlanet(),
+                Randomic.Words.FamousPerson(),
+                Randomic.People.LastName(),
+                Randomic.People.FirstName(),
+                Randomic.Words.Planet());
+
+            string name = $"{partA} {partB}";
+            return name;
+        }
+
+        public string Number()
+        {
+            // 20% of possibility of showing the letter
+            bool mustShowLetter = Randomic.Basic.Boolean(0.2);
+            string number = Randomic.Basic.Int(1, 99999).ToString();
+
+            if (mustShowLetter)
+            {
+                string letter = Randomic.Basic.String(1);
+                number = $"{number} {letter}";
+            }
+                
+            return number;
+        }
     }
 }

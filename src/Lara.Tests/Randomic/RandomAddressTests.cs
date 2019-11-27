@@ -44,5 +44,26 @@ namespace RandomicTests
             string enUsAbbr = Randomic.Address.TypeAbbreviated();
             Assert.AreEqual("St.", enUsAbbr);
         }
+
+        [Test]
+        public void Name()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string ptBr = Randomic.Address.Name();
+            Assert.AreEqual("Denise Galileo", ptBr);
+
+            // EnUs
+            Randomic.SetLanguage(Language.EnUs);
+            string enUs = Randomic.Address.Name();
+            Assert.AreEqual("Creagen Galileo", enUs);
+        }
+
+        [Test]
+        public void Number()
+        {
+            string number = Randomic.Address.Number();
+            Assert.AreEqual("24867", number);
+        }
     }
 }
