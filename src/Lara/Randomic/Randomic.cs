@@ -50,6 +50,11 @@ namespace Lara
         public static IRandomWords Words => new RandomWords(Language);
 
         /// <summary>
+        /// Offers Randomizers for Addresses in general such as Countries, States, Cities, etc.
+        /// </summary>
+        public static IRandomAddress Address => new RandomAddress(Language);
+
+        /// <summary>
         /// Instantiate a new Random object with the given seed (from SedSeed method) or with a random seed.
         /// </summary>
         private static readonly Func<Random> GetRandom = delegate ()

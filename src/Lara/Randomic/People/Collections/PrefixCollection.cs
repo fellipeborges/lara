@@ -12,16 +12,16 @@ namespace Lara.Randomizers
         {
             return language switch
             {
-                Language.EnUs => GetEnUS(),
-                Language.PtBr => GetPtBR(),
-                _ => GetEnUS(),
+                Language.EnUs => GetEnUs(),
+                Language.PtBr => GetPtBr(),
+                _ => GetEnUs(),
             };
         }
 
         /// <summary>
-        /// Returns a list of prefixes in EnUS.
+        /// Returns a list of prefixes in EnUs.
         /// </summary>
-        private List<string> GetEnUS()
+        private List<string> GetEnUs()
         {
             return new List<string>
             {
@@ -38,9 +38,9 @@ namespace Lara.Randomizers
         }
 
         /// <summary>
-        /// Returns a list of prefixes in PtBR.
+        /// Returns a list of prefixes in PtBr.
         /// </summary>
-        private List<string> GetPtBR()
+        private List<string> GetPtBr()
         {
             return new List<string>
             {
