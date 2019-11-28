@@ -36,16 +36,23 @@ namespace Lara.Randomizers
 
         /// <summary>
         /// Generates a random complement.
-        /// Example: "House A", "Apartment B", etc.
+        /// Example: "House A2", "Apartment B", etc.
         /// </summary>
         string Complement();
 
         /// <summary>
         /// Generates a random complement.
-        /// Example: "House A", "Apartment B", etc.
+        /// Example: "House A2", "Apartment B", etc.
         /// </summary>
         /// <param name="probability">The probability of generating a Complement.
         /// Must be a value from 0.0 (never generates) to 1.0 (always generates) with increments of 10% (0.1, 0.2, 0.3, etc)</param>
         string Complement(double probability);
+
+        /// <summary>
+        /// Returns a random Neighborhood.
+        /// Example: "Vila Formosa", "Tatuapé", etc.
+        /// Not avaialble in EnUs.
+        /// </summary>
+        string Neighborhood();
     }
 }

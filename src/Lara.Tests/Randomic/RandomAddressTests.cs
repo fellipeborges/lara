@@ -95,5 +95,19 @@ namespace RandomicTests
             string fiftyFifty = Randomic.Address.Complement(0.5);
             Assert.AreEqual("Apt. 249", fiftyFifty);
         }
+
+        [Test]
+        public void Neighborhood()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string ptBr = Randomic.Address.Neighborhood();
+            Assert.AreEqual("Jardim Assunção", ptBr);
+
+            // EnUs (not available)
+            Randomic.SetLanguage(Language.EnUs);
+            string enUs = Randomic.Address.Neighborhood();
+            Assert.AreEqual("", enUs);
+        }
     }
 }

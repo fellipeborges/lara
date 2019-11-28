@@ -83,5 +83,11 @@ namespace Lara.Randomizers
 
             return complement;
         }
+
+        public string Neighborhood()
+        {
+            var collection = new AddressNeighborhoodCollection().GetCollection(Language);
+            return Randomic.Among.Strings(collection);
+        }
     }
 }
