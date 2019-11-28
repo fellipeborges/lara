@@ -22,5 +22,10 @@
         /// Examples: "Tallahassee", "Baton Rouge".
         /// </summary>
         string Capital { get; set; }
+
+        /// <summary>
+        /// Returns the name of the State.
+        /// </summary>
+        string ToString();
     }
 }
