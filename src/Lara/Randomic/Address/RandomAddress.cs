@@ -60,8 +60,28 @@ namespace Lara.Randomizers
                 string letter = Randomic.Basic.String(1);
                 number = $"{number} {letter}";
             }
-                
+
             return number;
+        }
+
+        public string Complement()
+        {
+            var collection = new AddressComplementCollection().GetCollection(Language);
+            string complement = Randomic.Among.Strings(collection);
+            string number = Randomic.Basic.Int(1, 999).ToString();
+            string letter = Randomic.Among.Strings("", Randomic.Basic.String(1));
+            string retValue = $"{complement} {number}{letter}";
+
+            return retValue;
+        }
+
+        public string Complement(double probability)
+        {
+            string complement = Randomic.Basic.Boolean(probability) ?
+                Complement() :
+                "";
+
+            return complement;
         }
     }
 }

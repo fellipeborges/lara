@@ -71,7 +71,7 @@ namespace Lara.Randomizers
         /// <summary>
         /// Generates a random Boolean value (true or false) with a probability of true.
         /// </summary>
-        /// <param name="probabilityOfTrue">Indicates the probability of generating the true value.
+        /// <param name="probabilityOfTrue">The probability of generating the true value.
         /// Must be a value from 0.0 (always false) to 1.0 (always true) with increments of 10% (0.1, 0.2, 0.3, etc)</param>
         bool Boolean(double probabilityOfTrue);
 

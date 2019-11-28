@@ -65,5 +65,35 @@ namespace RandomicTests
             string number = Randomic.Address.Number();
             Assert.AreEqual("24867", number);
         }
+
+        [Test]
+        public void Complement()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string ptBr = Randomic.Address.Complement();
+            Assert.AreEqual("Fundos 249", ptBr);
+
+            // EnUs
+            Randomic.SetLanguage(Language.EnUs);
+            string enUs = Randomic.Address.Complement();
+            Assert.AreEqual("Apt. 249", enUs);
+        }
+
+        [Test]
+        public void ComplementWithProbability()
+        {
+            // Always generates
+            string always = Randomic.Address.Complement(1.0);
+            Assert.AreEqual("Apt. 249", always);
+
+            // Never generates
+            string never = Randomic.Address.Complement(0.0);
+            Assert.AreEqual("", never);
+
+            // 50/50 chance of generate
+            string fiftyFifty = Randomic.Address.Complement(0.5);
+            Assert.AreEqual("Apt. 249", fiftyFifty);
+        }
     }
 }
