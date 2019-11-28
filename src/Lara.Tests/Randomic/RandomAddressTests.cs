@@ -109,5 +109,19 @@ namespace RandomicTests
             string enUs = Randomic.Address.Neighborhood();
             Assert.AreEqual("", enUs);
         }
+
+        [Test]
+        public void City()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            string ptBr = Randomic.Address.City();
+            Assert.AreEqual("Cuiabá", ptBr);
+
+            // EnUs (not available)
+            Randomic.SetLanguage(Language.EnUs);
+            string enUs = Randomic.Address.City();
+            Assert.AreEqual("Des Moines", enUs);
+        }
     }
 }

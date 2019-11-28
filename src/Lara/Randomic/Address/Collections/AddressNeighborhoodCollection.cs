@@ -31,7 +31,7 @@ namespace Lara.Randomizers
         }
 
         /// <summary>
-        /// Returns a list ofAddress Neighborhoods in PtBr.
+        /// Returns a list of Address Neighborhoods in PtBr.
         /// </summary>
         private List<string> GetPtBr()
         {

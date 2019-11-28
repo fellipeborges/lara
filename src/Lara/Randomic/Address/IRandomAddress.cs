@@ -54,5 +54,11 @@ namespace Lara.Randomizers
         /// Not avaialble in EnUs.
         /// </summary>
         string Neighborhood();
+
+        /// <summary>
+        /// Returns a random City.
+        /// Example: "New York", "San Francisco", etc.
+        /// </summary>
+        string City();
     }
 }

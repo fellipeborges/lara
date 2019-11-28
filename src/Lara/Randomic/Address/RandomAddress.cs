@@ -89,5 +89,11 @@ namespace Lara.Randomizers
             var collection = new AddressNeighborhoodCollection().GetCollection(Language);
             return Randomic.Among.Strings(collection);
         }
+
+        public string City()
+        {
+            var collection = new CityCollection().GetCollection(Language);
+            return Randomic.Among.Strings(collection);
+        }
     }
 }
