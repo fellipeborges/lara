@@ -5,7 +5,7 @@ namespace Lara.Randomizers
     internal class DomainCollection
     {
         /// <summary>
-        ///  Returns a list of Top Level Domains. Exeamples: "com", "net", "org".
+        ///  Returns a list of Top Level Domains. Examples: "com", "net", "org".
         ///  Based on https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains
         /// </summary>
         internal List<string> GetTopLevelCollection()
@@ -23,7 +23,7 @@ namespace Lara.Randomizers
         }
 
         /// <summary>
-        ///  Returns a list of E-mail domains. Exeamples: "gmail", "yahoo", "outlook".
+        ///  Returns a list of E-mail domains. Examples: "gmail", "yahoo", "outlook".
         /// </summary>
         internal List<string> GetEmailCollection()
         {
@@ -39,7 +39,7 @@ namespace Lara.Randomizers
         }
 
         /// <summary>
-        ///  Returns a list of Country Level Domains. Exeamples: "br", "ar", "be".
+        ///  Returns a list of Country Level Domains. Examples: "br", "ar", "be".
         ///  Based on https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains
         /// </summary>
         internal List<string> GetCountryLevelCollection()

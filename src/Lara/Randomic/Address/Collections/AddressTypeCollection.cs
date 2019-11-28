@@ -5,7 +5,7 @@ namespace Lara.Randomizers
     internal class AddressTypeCollection
     {
         /// <summary>
-        ///  Returns a list of Address Types. Exeamples: "Street", "Avenue", etc..
+        ///  Returns a list of Address Types. Examples: "Street", "Avenue", etc..
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>
         internal List<string> GetTypeCollection(Language language)
@@ -19,7 +19,7 @@ namespace Lara.Randomizers
         }
 
         /// <summary>
-        ///  Returns a list of abbreviated Address Types. Exeamples: "St.", "Av.", etc..
+        ///  Returns a list of abbreviated Address Types. Examples: "St.", "Av.", etc..
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>
         internal List<string> GetAbbreviatedTypeCollection(Language language)

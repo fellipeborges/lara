@@ -95,5 +95,11 @@ namespace Lara.Randomizers
             var collection = new CityCollection().GetCollection(Language);
             return Randomic.Among.Strings(collection);
         }
+
+        public IRandomState State()
+        {
+            var collection = new StateCollection().GetCollection(Language);
+            return Randomic.Among.Other<IRandomState>(collection);
+        }
     }
 }

@@ -60,5 +60,11 @@ namespace Lara.Randomizers
         /// Example: "New York", "San Francisco", etc.
         /// </summary>
         string City();
+
+        /// <summary>
+        /// Returns a random State with Name, Abbreviation and Capital.
+        /// Example: "Florida, FL, Tallahassee".
+        /// </summary>
+        IRandomState State();
     }
 }

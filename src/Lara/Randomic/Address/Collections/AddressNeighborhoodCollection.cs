@@ -5,7 +5,7 @@ namespace Lara.Randomizers
     internal class AddressNeighborhoodCollection
     {
         /// <summary>
-        ///  Returns a list of Address Neighborhoods. Exeamples: "Vila Formosa", "Tatuapé", etc..
+        ///  Returns a list of Address Neighborhoods. Examples: "Vila Formosa", "Tatuapé", etc..
         ///  Not avaialble in EnUs.
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>

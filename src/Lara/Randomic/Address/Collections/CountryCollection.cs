@@ -5,7 +5,7 @@ namespace Lara.Randomizers
     internal class CountryCollection
     {
         /// <summary>
-        ///  Returns a list of Countries. Exeamples: "Brazil", "Argentina", etc..
+        ///  Returns a list of Countries. Examples: "Brazil", "Argentina", etc..
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>
         internal List<string> GetCollection(Language language)

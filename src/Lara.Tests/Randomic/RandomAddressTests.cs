@@ -123,5 +123,25 @@ namespace RandomicTests
             string enUs = Randomic.Address.City();
             Assert.AreEqual("Des Moines", enUs);
         }
+
+        [Test]
+        public void State()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            var ptBr = Randomic.Address.State();
+            Assert.AreEqual("Espírito Santo", ptBr.Name);
+            Assert.AreEqual("ES", ptBr.Abbreviation);
+            Assert.AreEqual("Vitória", ptBr.Capital);
+            Assert.AreEqual(ptBr.Name, ptBr.ToString());
+
+            // EnUs (not available)
+            Randomic.SetLanguage(Language.EnUs);
+            var enUs = Randomic.Address.State();
+            Assert.AreEqual("Illinois", enUs.Name);
+            Assert.AreEqual("IL", enUs.Abbreviation);
+            Assert.AreEqual("Springfield", enUs.Capital);
+            Assert.AreEqual(enUs.Name, enUs.ToString());
+        }
     }
 }

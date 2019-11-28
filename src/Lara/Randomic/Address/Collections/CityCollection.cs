@@ -5,8 +5,7 @@ namespace Lara.Randomizers
     internal class CityCollection
     {
         /// <summary>
-        ///  Returns a list of Cities. Exeamples: "New York", "San Francisco", etc..
-        ///  Not avaialble in EnUs.
+        ///  Returns a list of Cities. Examples: "New York", "San Francisco", etc..
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>
         internal List<string> GetCollection(Language language)

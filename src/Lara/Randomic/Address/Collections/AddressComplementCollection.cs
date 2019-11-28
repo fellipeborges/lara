@@ -5,7 +5,7 @@ namespace Lara.Randomizers
     internal class AddressComplementCollection
     {
         /// <summary>
-        ///  Returns a list of Address Complements. Exeamples: "House", "Apartment", etc..
+        ///  Returns a list of Address Complements. Examples: "House", "Apartment", etc..
         /// </summary>
         /// <param name="language">The language to consider when returning the list.</param>
         internal List<string> GetCollection(Language language)
