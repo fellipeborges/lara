@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lara.Randomizers
+﻿namespace Lara.Randomizers
 {
     public interface IRandomWords
     {
