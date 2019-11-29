@@ -102,6 +102,16 @@ namespace Lara.Randomizers
             return Randomic.Among.Other<IRandomState>(collection);
         }
 
+        public string ZipCode()
+        {
+            return Language switch
+            {
+                Language.EnUs => Randomic.Basic.Numeric(5),
+                Language.PtBr => Randomic.Basic.Numeric(8),
+                _ => Randomic.Basic.Numeric(5),
+            };
+        }
+
         public IRandomPhone Phone()
         {
             return Language switch
@@ -109,6 +119,16 @@ namespace Lara.Randomizers
                 Language.EnUs => GetPhoneEnUs(),
                 Language.PtBr => GetPhonePtBr(),
                 _ => GetPhoneEnUs(),
+            };
+        }
+
+        public string FullAddress()
+        {
+            return Language switch
+            {
+                Language.EnUs => GetFullAddressEnUs(),
+                Language.PtBr => GetFullAddresstBr(),
+                _ => GetFullAddressEnUs(),
             };
         }
 
@@ -143,5 +163,26 @@ namespace Lara.Randomizers
                 FormatedNumber = formatedNumber
             };
         }
+
+        private string GetFullAddressEnUs()
+        {
+            // Format:
+            // Number Name Type, City, State Abbreviation, Zip Code
+            string address = $"{Number()} {Name()} {Type()}, {City()}, {State().Abbreviation}, {ZipCode()}";
+            return address;
+        }
+
+        private string GetFullAddresstBr()
+        {
+            // Format:
+            // Type Name, Number Complement, Neighborhood, City, State Abbreviation, Zip Code
+            string optionalComplement = Complement(0.2);
+            optionalComplement = !string.IsNullOrEmpty(optionalComplement) ? " " + optionalComplement : "";
+
+            string address = $"{Type()} {Name()}, {Number()}{optionalComplement} - {Neighborhood()}, {City()} - {State().Abbreviation}, {ZipCode()}";
+
+            return address;
+        }
+
     }
 }

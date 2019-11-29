@@ -68,9 +68,21 @@ namespace Lara.Randomizers
         IRandomState State();
 
         /// <summary>
-        /// Returns a random Phone with Country Code, Area Code and Number.
+        /// Generates a random Zip Code.
+        /// Examples: "50613", "45125"
+        /// </summary>
+        string ZipCode();
+
+        /// <summary>
+        /// Generates a random Phone with Country Code, Area Code and Number.
         /// Examples: "+1 866 918-6329", "+55 11 2302-1409"
         /// </summary>
         IRandomPhone Phone();
+
+        /// <summary>
+        /// Generates a formated full address. The formating is based in the selected Language.
+        /// Example: "58 Central Drive, Cedar Falls, IA 50613"
+        /// </summary>
+        string FullAddress();
     }
 }

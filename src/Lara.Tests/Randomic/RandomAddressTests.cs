@@ -118,7 +118,7 @@ namespace RandomicTests
             string ptBr = Randomic.Address.City();
             Assert.AreEqual("Cuiabá", ptBr);
 
-            // EnUs (not available)
+            // EnUs
             Randomic.SetLanguage(Language.EnUs);
             string enUs = Randomic.Address.City();
             Assert.AreEqual("Des Moines", enUs);
@@ -135,13 +135,27 @@ namespace RandomicTests
             Assert.AreEqual("Vitória", ptBr.Capital);
             Assert.AreEqual(ptBr.Name, ptBr.ToString());
 
-            // EnUs (not available)
+            // EnUs
             Randomic.SetLanguage(Language.EnUs);
             var enUs = Randomic.Address.State();
             Assert.AreEqual("Illinois", enUs.Name);
             Assert.AreEqual("IL", enUs.Abbreviation);
             Assert.AreEqual("Springfield", enUs.Capital);
             Assert.AreEqual(enUs.Name, enUs.ToString());
+        }
+
+        [Test]
+        public void ZipCode()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            var ptBr = Randomic.Address.ZipCode();
+            Assert.AreEqual("32587540", ptBr);
+
+            // EnUs
+            Randomic.SetLanguage(Language.EnUs);
+            var enUs = Randomic.Address.ZipCode();
+            Assert.AreEqual("32587", enUs);
         }
 
         [Test]
@@ -164,6 +178,20 @@ namespace RandomicTests
             Assert.AreEqual("3258754", enUs.Number);
             Assert.AreEqual("325-8754", enUs.FormatedNumber);
             Assert.AreEqual("+1 325 325-8754", enUs.ToString());
+        }
+
+        [Test]
+        public void FullAddress()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            var ptBr = Randomic.Address.FullAddress();
+            Assert.AreEqual("Bosque Denise Galileo, 24867 - Jardim Assunção, Cuiabá - ES, 32587540", ptBr);
+
+            // EnUs (not available)
+            Randomic.SetLanguage(Language.EnUs);
+            var enUs = Randomic.Address.FullAddress();
+            Assert.AreEqual("24867 Creagen Galileo Street, Des Moines, IL, 32587", enUs);
         }
     }
 }
