@@ -23,7 +23,7 @@ namespace Lara.Randomizers
         public string Url()
         {
             string protocol = Randomic.Among.Strings("http", "https");
-            string server = Randomic.Basic.String();
+            string server = Randomic.Basic.Text();
 
             var domainCollections = new DomainCollection();
             string topLevelDomain = Randomic.Among.Strings(domainCollections.GetTopLevelCollection());

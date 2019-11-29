@@ -34,12 +34,12 @@ namespace Lara.Randomizers
             return (byte)Int(0, 255);
         }
 
-        public string String()
+        public string Text()
         {
-            return String(16);
+            return Text(16);
         }
 
-        public string String(int length)
+        public string Text(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             return GetRandomChars(chars, length);
@@ -53,6 +53,17 @@ namespace Lara.Randomizers
         public string Alphanumeric(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+            return GetRandomChars(chars, length);
+        }
+
+        public string Numeric()
+        {
+            return Numeric(16);
+        }
+
+        public string Numeric(int length)
+        {
+            const string chars = "1234567890";
             return GetRandomChars(chars, length);
         }
 

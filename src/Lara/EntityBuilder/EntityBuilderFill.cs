@@ -126,7 +126,7 @@ namespace Lara
                 string type when type.Contains("double") => Randomic.Basic.Double(),
                 string type when type.Contains("byte") => Randomic.Basic.Byte(),
                 string type when type.Contains("datetime") => Randomic.Basic.DateTime(),
-                string type when type.Contains("string") => Randomic.Basic.String(),
+                string type when type.Contains("string") => Randomic.Basic.Text(),
                 string type when type.Contains("bool") => Randomic.Basic.Boolean(),
                 _ => null
             };

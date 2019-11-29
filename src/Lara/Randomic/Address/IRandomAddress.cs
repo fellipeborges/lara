@@ -66,5 +66,11 @@ namespace Lara.Randomizers
         /// Example: "Florida, FL, Tallahassee".
         /// </summary>
         IRandomState State();
+
+        /// <summary>
+        /// Returns a random Phone with Country Code, Area Code and Number.
+        /// Examples: "+1 866 918-6329", "+55 11 2302-1409"
+        /// </summary>
+        IRandomPhone Phone();
     }
 }

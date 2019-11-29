@@ -57,7 +57,7 @@ namespace Lara.Randomizers
 
             if (mustShowLetter)
             {
-                string letter = Randomic.Basic.String(1);
+                string letter = Randomic.Basic.Text(1);
                 number = $"{number} {letter}";
             }
 
@@ -69,7 +69,7 @@ namespace Lara.Randomizers
             var collection = new AddressComplementCollection().GetCollection(Language);
             string complement = Randomic.Among.Strings(collection);
             string number = Randomic.Basic.Int(1, 999).ToString();
-            string letter = Randomic.Among.Strings("", Randomic.Basic.String(1));
+            string letter = Randomic.Among.Strings("", Randomic.Basic.Text(1));
             string retValue = $"{complement} {number}{letter}";
 
             return retValue;
@@ -100,6 +100,48 @@ namespace Lara.Randomizers
         {
             var collection = new StateCollection().GetCollection(Language);
             return Randomic.Among.Other<IRandomState>(collection);
+        }
+
+        public IRandomPhone Phone()
+        {
+            return Language switch
+            {
+                Language.EnUs => GetPhoneEnUs(),
+                Language.PtBr => GetPhonePtBr(),
+                _ => GetPhoneEnUs(),
+            };
+        }
+
+        private IRandomPhone GetPhoneEnUs()
+        {
+            const string EUA_AREA_CODE = "+1";
+            string areaCode = Randomic.Basic.Numeric(3);
+            string number = Randomic.Basic.Numeric(7);
+            string formatedNumber = $"{number.Substring(0, 3)}-{number.Substring(3, 4)}"; //nnn-nnnn
+
+            return new RandomPhone
+            {
+                CountryCode = EUA_AREA_CODE,
+                AreaCode = areaCode,
+                Number = number,
+                FormatedNumber = formatedNumber
+            };
+        }
+
+        private IRandomPhone GetPhonePtBr()
+        {
+            const string BRAZIL_AREA_CODE = "+55";
+            string areaCode = Randomic.Basic.Numeric(2);
+            string number = Randomic.Basic.Numeric(8);
+            string formatedNumber = $"{number.Substring(0, 4)}-{number.Substring(4, 4)}"; //nnnn-nnnn
+
+            return new RandomPhone
+            {
+                CountryCode = BRAZIL_AREA_CODE,
+                AreaCode = areaCode,
+                Number = number,
+                FormatedNumber = formatedNumber
+            };
         }
     }
 }

@@ -143,5 +143,27 @@ namespace RandomicTests
             Assert.AreEqual("Springfield", enUs.Capital);
             Assert.AreEqual(enUs.Name, enUs.ToString());
         }
+
+        [Test]
+        public void Phone()
+        {
+            // PtBr
+            Randomic.SetLanguage(Language.PtBr);
+            var ptBr = Randomic.Address.Phone();
+            Assert.AreEqual("+55", ptBr.CountryCode);
+            Assert.AreEqual("32", ptBr.AreaCode);
+            Assert.AreEqual("32587540", ptBr.Number);
+            Assert.AreEqual("3258-7540", ptBr.FormatedNumber);
+            Assert.AreEqual("+55 32 3258-7540", ptBr.ToString());
+
+            // EnUs (not available)
+            Randomic.SetLanguage(Language.EnUs);
+            var enUs = Randomic.Address.Phone();
+            Assert.AreEqual("+1", enUs.CountryCode);
+            Assert.AreEqual("325", enUs.AreaCode);
+            Assert.AreEqual("3258754", enUs.Number);
+            Assert.AreEqual("325-8754", enUs.FormatedNumber);
+            Assert.AreEqual("+1 325 325-8754", enUs.ToString());
+        }
     }
 }

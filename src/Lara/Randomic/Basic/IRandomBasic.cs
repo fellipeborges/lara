@@ -32,12 +32,12 @@ namespace Lara.Randomizers
         /// <summary>
         /// Generates a random 16 letter string.
         /// </summary>
-        string String();
+        string Text();
 
         /// <summary>
         /// Generates a random string with the given length.
         /// </summary>
-        string String(int length);
+        string Text(int length);
 
         /// <summary>
         /// Generates a random 16 letter Alphanumeric string.
@@ -48,6 +48,18 @@ namespace Lara.Randomizers
         /// Generates a random Alphanumeric string with the given length.
         /// </summary>
         string Alphanumeric(int length);
+
+        /// <summary>
+        /// Generates a random 16 digit numeric string.
+        /// Example: "6541236985479856"
+        /// </summary>
+        string Numeric();
+
+        /// <summary>
+        /// Generates a random numeric string with the given length.
+        /// Example: "093285"
+        /// </summary>
+        string Numeric(int length);
 
         /// <summary>
         /// Generates a random Date between the min and max dates.

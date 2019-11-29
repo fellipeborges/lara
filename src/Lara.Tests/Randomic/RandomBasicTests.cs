@@ -77,12 +77,12 @@ namespace RandomicTests
         }
 
         [Test]
-        public void String()
+        public void Text()
         {
-            string randomStr = Randomic.Basic.String();
+            string randomStr = Randomic.Basic.Text();
             Assert.AreEqual("MFYoiWSxFhBMQzji", randomStr);
 
-            string randomStrLength32 = Randomic.Basic.String(32);
+            string randomStrLength32 = Randomic.Basic.Text(32);
             Assert.AreEqual("MFYoiWSxFhBMQzjiOfkkxEITpIpPqucl", randomStrLength32);
         }
 
@@ -94,6 +94,16 @@ namespace RandomicTests
 
             string randomAlpha32 = Randomic.Basic.Alphanumeric(32);
             Assert.AreEqual("PGcvoaV7GnBPT0qoRmrr7FJXxKxTz3is", randomAlpha32);
+        }
+
+        [Test]
+        public void Numeric()
+        {
+            string randomNumeric = Randomic.Basic.Numeric();
+            Assert.AreEqual("3258754027134077", randomNumeric);
+
+            string randomNumeric32 = Randomic.Basic.Numeric(32);
+            Assert.AreEqual("32587540271340773788012482849968", randomNumeric32);
         }
 
         [Test]
