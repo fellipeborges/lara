@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Lara\Lara.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Stringifier\Model\" />
+  </ItemGroup>
+
 </Project>

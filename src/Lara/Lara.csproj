@@ -15,8 +15,4 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="PropertiesStringifier" Version="1.0.5" />
-  </ItemGroup>
-
 </Project>
