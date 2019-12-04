@@ -17,6 +17,7 @@ namespace Lara.Randomizers
             string optionalCountryLevel = Randomic.Basic.Boolean() ? "." + Randomic.Among.Strings(domainCollections.GetCountryLevelCollection()) : "";
 
             string emailAddress = $"{firstName}{optionalDot}{lastName}{optionalNumber}@{domain}.{topLevel}{optionalCountryLevel}".ToLower();
+            emailAddress = emailAddress.RemoveAccentuation();
             return emailAddress;
         }
 
