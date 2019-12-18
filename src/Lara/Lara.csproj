@@ -5,9 +5,9 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Fellipe Borges</Authors>
     <Product>Lara</Product>
-    <Description></Description>
+    <Description>A set of helper and extension methods to improve the developer's speed in coding.</Description>
     <RepositoryUrl>https://github.com/fellipeborges/lara</RepositoryUrl>
-    <PackageTags>debug;helpers;</PackageTags>
+    <PackageTags>debug;helpers;extensions;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/fellipeborges/lara/master/img/lara-icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/fellipeborges/lara</PackageProjectUrl>
