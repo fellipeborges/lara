@@ -1,6 +1,5 @@
 ﻿using Lara;
 using NUnit.Framework;
-using System;
 
 namespace RandomicTests
 {
@@ -170,7 +169,7 @@ namespace RandomicTests
             Assert.AreEqual("3258-7540", ptBr.FormatedNumber);
             Assert.AreEqual("+55 32 3258-7540", ptBr.ToString());
 
-            // EnUs (not available)
+            // EnUs
             Randomic.SetLanguage(Language.EnUs);
             var enUs = Randomic.Address.Phone();
             Assert.AreEqual("+1", enUs.CountryCode);
@@ -188,7 +187,7 @@ namespace RandomicTests
             var ptBr = Randomic.Address.FullAddress();
             Assert.AreEqual("Bosque Denise Galileo, 24867 - Jardim Assunção, Cuiabá - ES, 32587540", ptBr);
 
-            // EnUs (not available)
+            // EnUs
             Randomic.SetLanguage(Language.EnUs);
             var enUs = Randomic.Address.FullAddress();
             Assert.AreEqual("24867 Creagen Galileo Street, Des Moines, IL, 32587", enUs);

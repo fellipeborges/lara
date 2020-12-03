@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Lara;
+using NUnit.Framework;
 using System;
-using Lara;
 
 namespace RandomicTests
 {
@@ -147,7 +147,7 @@ namespace RandomicTests
             // Always true
             bool valueTrue = Randomic.Basic.Boolean(1.0);
             Assert.IsTrue(valueTrue);
-            
+
             // Always false
             bool valueFalse = Randomic.Basic.Boolean(0.0);
             Assert.IsFalse(valueFalse);
@@ -166,7 +166,7 @@ namespace RandomicTests
             // Even
             string evenValue = Randomic.Basic.EvenOdd(0, VALUE_FOR_EVEN, VALUE_FOR_ODD);
             Assert.AreEqual(VALUE_FOR_EVEN, evenValue);
-            
+
             // Odd
             string oddValue = Randomic.Basic.EvenOdd(1, VALUE_FOR_EVEN, VALUE_FOR_ODD);
             Assert.AreEqual(VALUE_FOR_ODD, oddValue);
